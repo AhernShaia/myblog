@@ -16,19 +16,25 @@
   <meta name="author" content="Ahern">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="關於">
-<meta property="og:url" content="http://example.com/2024/04/17/hello/index.html">
+    <meta name="description" content="實戰說明目的：實作 RAG 架構，透過詢問 LLM 獲得法律協助。 簡單說明專案流程，將本地的檔案轉換成向量資料並且儲存在免費的雲端向量資料庫 Qdrant，Line Bot 作為前端，透過對話的方式向 AI 助手詢問，LLM 則使用 Azure 部署的 OpenAI model，將結果回覆給使用者。 最後將服務部署在 GCP App Engine 。 Git Hub 連結：legaladviso">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Personal projects - 法務助手">
+<meta property="og:url" content="http://example.com/2024/04/17/GAI/Personal-projects-1/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="實戰說明目的：實作 RAG 架構，透過詢問 LLM 獲得法律協助。 簡單說明專案流程，將本地的檔案轉換成向量資料並且儲存在免費的雲端向量資料庫 Qdrant，Line Bot 作為前端，透過對話的方式向 AI 助手詢問，LLM 則使用 Azure 部署的 OpenAI model，將結果回覆給使用者。 最後將服務部署在 GCP App Engine 。 Git Hub 連結：legaladviso">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2024-04-17T09:03:37.000Z">
-<meta property="article:modified_time" content="2024-04-17T11:20:21.092Z">
+<meta property="article:published_time" content="2024-04-17T03:20:55.000Z">
+<meta property="article:modified_time" content="2024-04-17T10:48:18.745Z">
 <meta property="article:author" content="Ahern">
+<meta property="article:tag" content="GAI">
+<meta property="article:tag" content="RAG">
+<meta property="article:tag" content="Personal projects">
+<meta property="article:tag" content="Line Bot">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>關於 - Hexo</title>
+  <title>Personal projects - 法務助手 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="關於"></span>
+            <span id="subtitle" data-typed-text="Personal projects - 法務助手"></span>
           
         </div>
 
@@ -205,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-17 17:03" pubdate>
-          2024年4月17日 下午
+        <time datetime="2024-04-17 11:20" pubdate>
+          2024年4月17日 上午
         </time>
       </span>
     
@@ -217,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          152 字
         
       </span>
     
@@ -228,7 +234,7 @@
         
         
         
-          1 分鐘
+          2 分鐘
         
       </span>
     
@@ -265,12 +271,27 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">關於</h1>
+            <h1 id="seo-header">Personal projects - 法務助手</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <h2 id="實戰說明"><a href="#實戰說明" class="headerlink" title="實戰說明"></a>實戰說明</h2><p><strong>目的</strong>：實作 RAG 架構，透過詢問 LLM 獲得法律協助。</p>
+<p>簡單說明專案流程，將本地的檔案轉換成向量資料並且儲存在免費的雲端向量資料庫 Qdrant，Line Bot 作為前端，透過對話的方式向 AI 助手詢問，LLM 則使用 Azure 部署的 OpenAI model，將結果回覆給使用者。</p>
+<p>最後將服務部署在 GCP <strong><code>App Engine</code></strong> 。</p>
+<p>Git Hub 連結：<a target="_blank" rel="noopener" href="https://github.com/AhernShaia/legaladvisor--Line-"><strong>legaladvisor</strong></a></p>
+<h3 id="使用技術"><a href="#使用技術" class="headerlink" title="使用技術"></a>使用技術</h3><ul>
+<li>開發環境：macbook pro 14</li>
+<li>前端: Line Bot</li>
+<li>後端: Flask</li>
+<li>向量資料庫: Qdrant</li>
+<li>通用模型：<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/azure/ai-services/openai/concepts/models">gpt-4-32k</a></li>
+<li>Embeddings：<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/azure/ai-services/openai/concepts/models">text-embedding-ada-002</a></li>
+<li>雲服務: GAE, Qdrant Cloud, Azure OpenAI</li>
+</ul>
+<hr>
+<h1 id="正式開始"><a href="#正式開始" class="headerlink" title="正式開始"></a>正式開始</h1><p>(一) <a href="../LineBot/line-bot.md">建立 Line Bot</a></p>
+
                 
               </div>
             
@@ -278,6 +299,40 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AF%A6%E4%BD%9C/" class="category-chain-item">實作</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/GAI/" class="print-no-link">#GAI</a>
+      
+        <a href="/tags/RAG/" class="print-no-link">#RAG</a>
+      
+        <a href="/tags/Personal-projects/" class="print-no-link">#Personal projects</a>
+      
+        <a href="/tags/Line-Bot/" class="print-no-link">#Line Bot</a>
+      
+    </div>
   
 </div>
 
@@ -287,8 +342,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>關於</div>
-      <div>http://example.com/2024/04/17/hello/</div>
+      <div>Personal projects - 法務助手</div>
+      <div>http://example.com/2024/04/17/GAI/Personal-projects-1/</div>
     </div>
     <div class="license-meta">
       
@@ -332,9 +387,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/17/GAI/LineBot/line-bot/" title="建立Line Bot">
+                      <a href="/2024/04/17/hello/" title="關於">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">建立Line Bot</span>
+                        <span class="hidden-mobile">關於</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -342,8 +397,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/17/GAI/Personal-projects-1/" title="Personal projects - 法務助手">
-                        <span class="hidden-mobile">Personal projects - 法務助手</span>
+                      <a href="/2024/04/17/GAI/RAG/" title="RAG(Retrieval Augmented Generation)">
+                        <span class="hidden-mobile">RAG(Retrieval Augmented Generation)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
