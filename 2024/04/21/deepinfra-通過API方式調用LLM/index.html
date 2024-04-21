@@ -16,25 +16,31 @@
   <meta name="author" content="Ahern">
   <meta name="keywords" content="">
   
-    <meta name="description" content="最近在研究 AI 的領域，突然靈機一動！與其讓單一 AI 獨自應付各種難題，不如組建一支 AI 團隊，讓每個 AI 各司其職，集思廣益! 想象一下，如果只有一個 AI，當它遇到自己不擅長的領域時，只能硬著頭皮瞎編一通。但如果有整支 AI 團隊，每個成員都是某個領域的專家，團隊就能通力合作，補足彼此的短板，最終給出高品質的解決方案。 很酷的是，我發現了一款叫 CrewAI 的框架，可以輕鬆打造這樣的">
+    <meta name="description" content="在研究通用人工智慧(GAI)生態系統的過程中,遇到了一些令人煩惱的問題。 開始的時候,我考慮使用熱門的雲端服務像 Azure 和 OpenAI,但很快就發現如果需要大量的調用和測試,那就是不小的費用。 為了能夠集中精力在開發上,轉而嘗試本地部署 OllaMa,用於應用程式開發。但沒想到,新的難題隨之而來。每個 LLM 對於同一個提示詞(Prompt)都會給出不盡相同的答覆,要統一調整某一 LLM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AI 協作框架 - crewai">
-<meta property="og:url" content="http://example.com/2024/04/18/AI-%E5%8D%94%E4%BD%9C/index.html">
+<meta property="og:title" content="deepinfra - 通過簡單的API方式調用LLM">
+<meta property="og:url" content="http://example.com/2024/04/21/deepinfra-%E9%80%9A%E9%81%8EAPI%E6%96%B9%E5%BC%8F%E8%AA%BF%E7%94%A8LLM/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="最近在研究 AI 的領域，突然靈機一動！與其讓單一 AI 獨自應付各種難題，不如組建一支 AI 團隊，讓每個 AI 各司其職，集思廣益! 想象一下，如果只有一個 AI，當它遇到自己不擅長的領域時，只能硬著頭皮瞎編一通。但如果有整支 AI 團隊，每個成員都是某個領域的專家，團隊就能通力合作，補足彼此的短板，最終給出高品質的解決方案。 很酷的是，我發現了一款叫 CrewAI 的框架，可以輕鬆打造這樣的">
+<meta property="og:description" content="在研究通用人工智慧(GAI)生態系統的過程中,遇到了一些令人煩惱的問題。 開始的時候,我考慮使用熱門的雲端服務像 Azure 和 OpenAI,但很快就發現如果需要大量的調用和測試,那就是不小的費用。 為了能夠集中精力在開發上,轉而嘗試本地部署 OllaMa,用於應用程式開發。但沒想到,新的難題隨之而來。每個 LLM 對於同一個提示詞(Prompt)都會給出不盡相同的答覆,要統一調整某一 LLM">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://example.com/img/crewai_demo.png">
-<meta property="article:published_time" content="2024-04-18T14:44:11.000Z">
-<meta property="article:modified_time" content="2024-04-19T12:10:32.416Z">
+<meta property="og:image" content="http://example.com/img/deepinfra/0-login.png">
+<meta property="og:image" content="http://example.com/img/deepinfra/1-login.png">
+<meta property="og:image" content="http://example.com/img/deepinfra/2-deployment_model.png">
+<meta property="og:image" content="http://example.com/img/deepinfra/5-API_Keys.png">
+<meta property="og:image" content="http://example.com/img/deepinfra/99-code_result.png">
+<meta property="og:image" content="http://example.com/img/deepinfra/99-code_result_70B.png">
+<meta property="og:image" content="http://example.com/img/deepinfra/4deploy-dash.png">
+<meta property="og:image" content="http://example.com/img/deepinfra/3-dash.png">
+<meta property="article:published_time" content="2024-04-21T03:04:18.000Z">
+<meta property="article:modified_time" content="2024-04-21T04:25:56.093Z">
 <meta property="article:author" content="Ahern">
 <meta property="article:tag" content="GAI">
-<meta property="article:tag" content="RAG">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/crewai_demo.png">
+<meta name="twitter:image" content="http://example.com/img/deepinfra/0-login.png">
   
   
   
-  <title>AI 協作框架 - crewai - Hexo</title>
+  <title>deepinfra - 通過簡單的API方式調用LLM - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +206,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="AI 協作框架 - crewai"></span>
+            <span id="subtitle" data-typed-text="deepinfra - 通過簡單的API方式調用LLM"></span>
           
         </div>
 
@@ -211,8 +217,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-18 22:44" pubdate>
-          2024年4月18日 晚上
+        <time datetime="2024-04-21 11:04" pubdate>
+          2024年4月21日 上午
         </time>
       </span>
     
@@ -223,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          786 字
+          537 字
         
       </span>
     
@@ -234,7 +240,7 @@
         
         
         
-          7 分鐘
+          5 分鐘
         
       </span>
     
@@ -271,30 +277,42 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">AI 協作框架 - crewai</h1>
+            <h1 id="seo-header">deepinfra - 通過簡單的API方式調用LLM</h1>
             
             
               <div class="markdown-body">
                 
-                <p>最近在研究 AI 的領域，突然靈機一動！與其讓單一 AI 獨自應付各種難題，不如組建一支 AI 團隊，讓每個 AI 各司其職，集思廣益!</p>
-<p>想象一下，如果只有一個 AI，當它遇到自己不擅長的領域時，只能硬著頭皮瞎編一通。但如果有整支 AI 團隊，每個成員都是某個領域的專家，團隊就能通力合作，補足彼此的短板，最終給出高品質的解決方案。</p>
-<p>很酷的是，我發現了一款叫 CrewAI 的框架，可以輕鬆打造這樣的 AI 團隊。更贊的是，它還能與本地部署的大型 AI 模型(比如 OllAMa)互動，不用總是去找遠在雲端的 AI 服務，既省錢又快速!</p>
-<p>用 AI 團隊的方式問答和解決問題，隊友們互幫互補，必定事半功倍，我認為 AI 團隊這樣的架構有望顯著提升問答、任務解決等應用的效果，為人機交互帶來全新的體驗…</p>
+                <p>在研究通用人工智慧(GAI)生態系統的過程中,遇到了一些令人煩惱的問題。</p>
+<p>開始的時候,我考慮使用熱門的雲端服務像 Azure 和 OpenAI,但很快就發現如果需要大量的調用和測試,那就是不小的費用。</p>
+<p>為了能夠集中精力在開發上,轉而嘗試本地部署 OllaMa,用於應用程式開發。但沒想到,新的難題隨之而來。每個 LLM 對於同一個提示詞(Prompt)都會給出不盡相同的答覆,要統一調整某一 LLM 的提示詞,還得耗費大量精力,而且電腦硬體設備的性能也成了制約因素。</p>
+<p>在偶然發現了一個超棒的解決方案!deepinfra 平台!透過簡單的 API 調用,我就能夠呼叫市面上主流的 LLM 服務,還有監控面板可供觀察模型運行狀態,實在是太方便了～</p>
 <p>馬上開始～</p>
-<p>套件 GitHub：<a target="_blank" rel="noopener" href="https://github.com/joaomdmoura/crewAI?tab=readme-ov-file"><strong>crewai</strong></a><br>Demo GitHub：<a target="_blank" rel="noopener" href="https://github.com/AhernShaia/crewai_demo.git"><strong>crewai_demo</strong></a></p>
+<p>官方連結：<a target="_blank" rel="noopener" href="https://deepinfra.com/"><strong>deepinfra</strong></a></p>
 <h5 id="操作環境"><a href="#操作環境" class="headerlink" title="操作環境"></a>操作環境</h5><ul>
 <li>電腦：macbook pro 14</li>
 <li>套件管理：poetry</li>
 <li>編輯器：VSCode</li>
-<li>Python 版本：3.13</li>
-<li>LLM: yabi&#x2F;breeze-7b-instruct-v1_0_q6_k</li>
 </ul>
-<h3 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">poetry add crewai crewai-tools<br></code></pre></td></tr></table></figure>
+<h3 id="註冊"><a href="#註冊" class="headerlink" title="註冊"></a>註冊</h3><p>目前只能使用 GitHub 帳號登入。</p>
+<ol>
+<li><p>點擊<code>Login</code><br><img src="/./img/deepinfra/0-login.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>點擊<code>Log in with Github</code><br><img src="/./img/deepinfra/1-login.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>登入後會跳轉到<code>Deployments</code>頁面<br><img src="/./img/deepinfra/2-deployment_model.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>點選<code>API Keys</code>（官方會自動分配），就能看到自己的 API Key 了。<br><img src="/./img/deepinfra/5-API_Keys.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>官方有提供目前主流的使用範例，文章中，我使用<code>Langchain</code>來測試。<br>範例連結：<a target="_blank" rel="noopener" href="https://deepinfra.com/docs/advanced/langchain"><strong>Langchain</strong></a><br>模型連結：<a target="_blank" rel="noopener" href="https://deepinfra.com/models**"><strong>models</strong></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">from</span> langchain_community.llms <span class="hljs-keyword">import</span> DeepInfra<br><span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> PromptTemplate<br><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> LLMChain<br><br><span class="hljs-comment"># 改成自己的API Key即可</span><br>os.environ[<span class="hljs-string">&quot;DEEPINFRA_API_TOKEN&quot;</span>] = <span class="hljs-string">&#x27;&lt;your Deep Infra API token&gt;&#x27;</span><br><br><span class="hljs-comment"># 可以在官方的model頁面找到有支援的模型，我使用 google開源模型 gemma</span><br>llm = DeepInfra(model_id=<span class="hljs-string">&quot;google/gemma-1.1-7b-it&quot;</span>)<br>llm.model_kwargs = &#123;<br>    <span class="hljs-string">&quot;temperature&quot;</span>: <span class="hljs-number">0.7</span>,<br>    <span class="hljs-string">&quot;repetition_penalty&quot;</span>: <span class="hljs-number">1.2</span>,<br>    <span class="hljs-string">&quot;max_new_tokens&quot;</span>: <span class="hljs-number">250</span>,<br>    <span class="hljs-string">&quot;top_p&quot;</span>: <span class="hljs-number">0.9</span>,<br>&#125;<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">example1</span>():<br>    <span class="hljs-comment"># run inference</span><br>    <span class="hljs-built_in">print</span>(llm(<span class="hljs-string">&quot;Who let the dogs out?&quot;</span>))<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">example2</span>():<br>    <span class="hljs-comment"># run streaming inference</span><br>    <span class="hljs-keyword">for</span> chunk <span class="hljs-keyword">in</span> llm.stream(<span class="hljs-string">&quot;Who let the dogs out?&quot;</span>):<br>        <span class="hljs-built_in">print</span>(chunk)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">example3</span>():<br>    <span class="hljs-comment"># create a prompt template for Question and Answer</span><br>    template = <span class="hljs-string">&quot;&quot;&quot;Question: &#123;question&#125;</span><br><span class="hljs-string"></span><br><span class="hljs-string">    Answer: Let&#x27;s think step by step.&quot;&quot;&quot;</span><br>    prompt = PromptTemplate(template=template, input_variables=[<span class="hljs-string">&quot;question&quot;</span>])<br><br>    <span class="hljs-comment"># initiate the LLMChain</span><br>    llm_chain = LLMChain(prompt=prompt, llm=llm)<br><br>    <span class="hljs-comment"># provide a question and run the LLMChain</span><br>    question = <span class="hljs-string">&quot;Can penguins reach the North pole?&quot;</span><br>    <span class="hljs-built_in">print</span>(llm_chain.run(question))<br><br><br><span class="hljs-comment"># run examples</span><br>example1()<br></code></pre></td></tr></table></figure>
 
-<h3 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h3><p>在程式碼中，定義了兩個角色<code>Senior Research Analyst</code>和<code>Tech Content Strategist</code>，分別賦予了各自的角色定位，並且給該角色的目標，給予協作<code>allow_delegation</code>，然後給角色任務<code>task1</code>和<code>task2</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">from</span> crewai <span class="hljs-keyword">import</span> Agent, Task, Crew, Process<br><span class="hljs-keyword">from</span> crewai_tools <span class="hljs-keyword">import</span> SerperDevTool<br>os.environ[<span class="hljs-string">&quot;OPENAI_API_BASE&quot;</span>] = <span class="hljs-string">&#x27;http://localhost:11434/v1&#x27;</span><br>os.environ[<span class="hljs-string">&quot;OPENAI_MODEL_NAME&quot;</span>] = <span class="hljs-string">&#x27;yabi/breeze-7b-instruct-v1_0_q6_k&#x27;</span><br>os.environ[<span class="hljs-string">&quot;OPENAI_API_KEY&quot;</span>] = <span class="hljs-string">&#x27;sk-111111111111111111111111111111111111111111111111&#x27;</span><br><br>search_tool = SerperDevTool(<br>    name=<span class="hljs-string">&quot;Search the internet&quot;</span>, search_url=<span class="hljs-string">&quot;https://buzzorange.com/techorange/latest&quot;</span>,    description=<span class="hljs-string">&quot;A tool that can be used to seman&quot;</span>,<br>)<br><br>researcher = Agent(<br>    role=<span class="hljs-string">&#x27;Senior Research Analyst&#x27;</span>,<br>    goal=<span class="hljs-string">&#x27;發現人工智慧和數據科學的前沿發展&#x27;</span>,<br>    backstory=<span class="hljs-string">&quot;&quot;&quot;您在一家領先的科技智庫工作。</span><br><span class="hljs-string">   您的專長在於識別新興趨勢。</span><br><span class="hljs-string">   您擁有剖析複雜數據並提出可行見解的技巧。&quot;&quot;&quot;</span>,<br>    verbose=<span class="hljs-literal">True</span>,<br>    allow_delegation=<span class="hljs-literal">True</span>,<br>)<br>writer = Agent(<br>    role=<span class="hljs-string">&#x27;Tech Content Strategist&#x27;</span>,<br>    goal=<span class="hljs-string">&#x27;製作有關技術進步的引人注目的內容&#x27;</span>,<br>    backstory=<span class="hljs-string">&quot;&quot;&quot;您是一位著名的內容策略師，以富有洞察力和引人入勝的文章而聞名。</span><br><span class="hljs-string">   您將複雜的概念轉化為引人入勝的敘述。&quot;&quot;&quot;</span>,<br>    verbose=<span class="hljs-literal">True</span>,<br>    allow_delegation=<span class="hljs-literal">True</span><br>)<br><br><span class="hljs-comment"># 建立任務給Agent</span><br>task1 = Task(<br>    description=<span class="hljs-string">&quot;&quot;&quot;對2024年人工智慧最新進展進行全面分析。</span><br><span class="hljs-string">   確定關鍵趨勢、突破性技術和潛在的行業影響。&quot;&quot;&quot;</span>,<br>    expected_output=<span class="hljs-string">&quot;完整的分析報告要點&quot;</span>,<br>    agent=researcher<br>)<br><br>task2 = Task(<br>    description=<span class="hljs-string">&quot;&quot;&quot;利用提供的見解，開發一個引人入勝的博客</span><br><span class="hljs-string">   這篇文章強調了最重要的人工智慧進步。</span><br><span class="hljs-string">   您的貼文應該內容豐富且易於理解，適合精通科技的受眾。</span><br><span class="hljs-string">   讓它聽起來很酷，避免使用複雜的單詞，這樣聽起來就不像人工智慧&quot;&quot;&quot;</span>,<br>    expected_output=<span class="hljs-string">&quot;完整的部落格文章至少有 4 段&quot;</span>,<br>    agent=writer<br>)<br><br><span class="hljs-comment"># 參與協作的Agent和任務</span><br>crew = Crew(<br>    agents=[researcher, writer],<br>    tasks=[task1, task2],<br>    verbose=<span class="hljs-number">2</span>,<br>)<br><br>result = crew.kickoff()<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;######################&quot;</span>)<br><span class="hljs-built_in">print</span>(result)<br><br></code></pre></td></tr></table></figure>
-
-<h3 id="執行結果"><a href="#執行結果" class="headerlink" title="執行結果"></a>執行結果</h3><p><img src="/./img/crewai_demo.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="執行結果"><a href="#執行結果" class="headerlink" title="執行結果"></a>執行結果</h3><p>可以看，7B 的模型僅等待 4 秒就返回結果，而 70B 只需要 6 秒，速度真的非常快<br><img src="/./img/deepinfra/99-code_result.png" srcset="/img/loading.gif" lazyload><br><img src="/./img/deepinfra/99-code_result_70B.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="儀表板"><a href="#儀表板" class="headerlink" title="儀表板"></a>儀表板</h3><p>回到<a target="_blank" rel="noopener" href="https://deepinfra.com/dash"><strong>儀表板</strong></a>中，可以看到部署的 model，和呼叫模型的開銷</p>
+<ul>
+<li>Deployments<br><img src="/./img/deepinfra/4deploy-dash.png" srcset="/img/loading.gif" lazyload></li>
+<li>Usage<br><img src="/./img/deepinfra/3-dash.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
 
                 
               </div>
@@ -330,8 +348,6 @@
       
         <a href="/tags/GAI/" class="print-no-link">#GAI</a>
       
-        <a href="/tags/RAG/" class="print-no-link">#RAG</a>
-      
     </div>
   
 </div>
@@ -342,8 +358,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>AI 協作框架 - crewai</div>
-      <div>http://example.com/2024/04/18/AI-協作/</div>
+      <div>deepinfra - 通過簡單的API方式調用LLM</div>
+      <div>http://example.com/2024/04/21/deepinfra-通過API方式調用LLM/</div>
     </div>
     <div class="license-meta">
       
@@ -355,7 +371,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>發布於</div>
-          <div>2024年4月18日</div>
+          <div>2024年4月21日</div>
         </div>
       
       
@@ -387,18 +403,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/21/deepinfra-%E9%80%9A%E9%81%8EAPI%E6%96%B9%E5%BC%8F%E8%AA%BF%E7%94%A8LLM/" title="deepinfra - 通過簡單的API方式調用LLM">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">deepinfra - 通過簡單的API方式調用LLM</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/17/GAI/LineBot/line-bot/" title="Line Bot">
-                        <span class="hidden-mobile">Line Bot</span>
+                      <a href="/2024/04/18/AI-%E5%8D%94%E4%BD%9C/" title="AI 協作框架 - crewai">
+                        <span class="hidden-mobile">AI 協作框架 - crewai</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
