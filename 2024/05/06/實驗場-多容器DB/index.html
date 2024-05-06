@@ -16,22 +16,35 @@
   <meta name="author" content="Ahern">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Pythonpoetry123456789101112131415161718192021FROM python:3.12-slim-bullseyeENV POETRY_VERSION 1.4.1# Install system dependenciesRUN pip install &quot;poetry&#x3D;&#x3D;$POETRY_VERSION&quot;# Set work directoryW">
+    <meta name="description" content="這個實驗主要用於無法在 macOS 上啟動mssql而衍生出的實驗環境。 使用工具 DBeaver docker   1. 啟動container1docker run -d --name sql1 -e &amp;#x27;ACCEPT_EULA&#x3D;Y&amp;#x27; -e &amp;#x27;SA_PASSWORD&#x3D;YOUR_PASSWORD&amp;#x27; -p 1433:1433 mcr.microsoft.com">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dockerfile 模板">
-<meta property="og:url" content="http://example.com/2024/04/22/docker/dockerfile-%E6%A8%A1%E6%9D%BF/index.html">
+<meta property="og:title" content="實驗場-多容器DB">
+<meta property="og:url" content="http://example.com/2024/05/06/%E5%AF%A6%E9%A9%97%E5%A0%B4-%E5%A4%9A%E5%AE%B9%E5%99%A8DB/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Pythonpoetry123456789101112131415161718192021FROM python:3.12-slim-bullseyeENV POETRY_VERSION 1.4.1# Install system dependenciesRUN pip install &quot;poetry&#x3D;&#x3D;$POETRY_VERSION&quot;# Set work directoryW">
+<meta property="og:description" content="這個實驗主要用於無法在 macOS 上啟動mssql而衍生出的實驗環境。 使用工具 DBeaver docker   1. 啟動container1docker run -d --name sql1 -e &amp;#x27;ACCEPT_EULA&#x3D;Y&amp;#x27; -e &amp;#x27;SA_PASSWORD&#x3D;YOUR_PASSWORD&amp;#x27; -p 1433:1433 mcr.microsoft.com">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2024-04-21T21:42:06.000Z">
-<meta property="article:modified_time" content="2024-04-21T21:50:01.069Z">
+<meta property="og:image" content="http://example.com/img/mssql/01.png">
+<meta property="og:image" content="http://example.com/img/mssql/02.png">
+<meta property="og:image" content="http://example.com/img/mssql/00.png">
+<meta property="og:image" content="http://example.com/img/mssql/04.png">
+<meta property="og:image" content="http://example.com/img/mssql/05.png">
+<meta property="og:image" content="http://example.com/img/mssql/06.png">
+<meta property="og:image" content="http://example.com/img/mssql/07.png">
+<meta property="og:image" content="http://example.com/img/mssql/07-5.png">
+<meta property="og:image" content="http://example.com/img/mssql/08.png">
+<meta property="og:image" content="http://example.com/img/mssql/09.png">
+<meta property="article:published_time" content="2024-05-06T12:51:18.000Z">
+<meta property="article:modified_time" content="2024-05-06T13:49:29.327Z">
 <meta property="article:author" content="Ahern">
+<meta property="article:tag" content="實驗">
 <meta property="article:tag" content="docker">
+<meta property="article:tag" content="mssql">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/mssql/01.png">
   
   
   
-  <title>dockerfile 模板 - Hexo</title>
+  <title>實驗場-多容器DB - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="dockerfile 模板"></span>
+            <span id="subtitle" data-typed-text="實驗場-多容器DB"></span>
           
         </div>
 
@@ -208,8 +221,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-22 05:42" pubdate>
-          2024年4月22日 凌晨
+        <time datetime="2024-05-06 20:51" pubdate>
+          2024年5月6日 晚上
         </time>
       </span>
     
@@ -220,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          132 字
+          178 字
         
       </span>
     
@@ -268,14 +281,30 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">dockerfile 模板</h1>
+            <h1 id="seo-header">實驗場-多容器DB</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h5 id="poetry"><a href="#poetry" class="headerlink" title="poetry"></a>poetry</h5><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-keyword">FROM</span> python:<span class="hljs-number">3.12</span>-slim-bullseye<br><br><span class="hljs-keyword">ENV</span> POETRY_VERSION <span class="hljs-number">1.4</span>.<span class="hljs-number">1</span><br><br><span class="hljs-comment"># Install system dependencies</span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> pip install <span class="hljs-string">&quot;poetry==<span class="hljs-variable">$POETRY_VERSION</span>&quot;</span></span><br><br><span class="hljs-comment"># Set work directory</span><br><span class="hljs-keyword">WORKDIR</span><span class="language-bash"> /app</span><br><br><span class="hljs-comment"># Copy only requirements to cache them in docker layer</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> poetry.lock pyproject.toml /app/</span><br><br><span class="hljs-comment"># Disable the creation of virtual environments</span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> poetry config virtualenvs.create <span class="hljs-literal">false</span></span><br><br><span class="hljs-comment"># Install dependencies</span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> poetry install</span><br><br><span class="hljs-comment"># Copy the current directory contents into the container at /app</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> ./ /app/</span><br></code></pre></td></tr></table></figure>
+                <p>這個實驗主要用於無法在 macOS 上啟動<code>mssql</code>而衍生出的實驗環境。</p>
+<h5 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h5><ul>
+<li>DBeaver</li>
+<li>docker</li>
+</ul>
+<hr>
+<h3 id="1-啟動container"><a href="#1-啟動container" class="headerlink" title="1. 啟動container"></a>1. 啟動<code>container</code></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -d --name sql1 -e <span class="hljs-string">&#x27;ACCEPT_EULA=Y&#x27;</span> -e <span class="hljs-string">&#x27;SA_PASSWORD=YOUR_PASSWORD&#x27;</span> -p 1433:1433 mcr.microsoft.com/mssql/server:2022-latest<br></code></pre></td></tr></table></figure>
 
-<h5 id="Flask"><a href="#Flask" class="headerlink" title="Flask"></a>Flask</h5><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-comment"># 使用 Python 3.12 slim 做為基礎鏡像</span><br><span class="hljs-keyword">FROM</span> python:<span class="hljs-number">3.12</span>-slim<br><br><span class="hljs-comment"># 指定工作目錄</span><br><span class="hljs-keyword">WORKDIR</span><span class="language-bash"> /app</span><br><br><span class="hljs-comment"># 安裝套件</span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> apt-get update &amp;&amp; apt-get install -y --no-install-recommends \</span><br><span class="language-bash">    build-essential \</span><br><span class="language-bash">    &amp;&amp; <span class="hljs-built_in">rm</span> -rf /var/lib/apt/lists/*</span><br><br><span class="hljs-comment"># 複製 requirements.txt 並安裝 Python 依賴</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> requirements.txt .</span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> pip install --no-cache-dir --upgrade pip \</span><br><span class="language-bash">    &amp;&amp; pip install --no-cache-dir -r requirements.txt \</span><br><span class="language-bash">    &amp;&amp; <span class="hljs-built_in">rm</span> -rf /root/.cache/pip</span><br><br><span class="hljs-comment"># 複製目錄下的文件</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> . .</span><br><br><span class="hljs-comment"># 開放端口</span><br><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">5000</span><br><br><span class="hljs-comment"># 啟動 Flask 應用</span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;flask&quot;</span>, <span class="hljs-string">&quot;run&quot;</span>, <span class="hljs-string">&quot;--host=0.0.0.0&quot;</span>]</span><br></code></pre></td></tr></table></figure>
+<h3 id="2-DBeaver-連接-mssql"><a href="#2-DBeaver-連接-mssql" class="headerlink" title="2. DBeaver 連接 mssql"></a>2. DBeaver 連接 mssql</h3><h5 id="a-選擇SQL-Server點選完成"><a href="#a-選擇SQL-Server點選完成" class="headerlink" title="a. 選擇SQL Server點選完成"></a>a. 選擇<code>SQL Server</code>點選<strong>完成</strong></h5><p><img src="/./img/mssql/01.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="b-輸入資料庫的-IP，登入的用戶及密碼，點選完成後，第一次連接會出現安裝套件的視窗。"><a href="#b-輸入資料庫的-IP，登入的用戶及密碼，點選完成後，第一次連接會出現安裝套件的視窗。" class="headerlink" title="b. 輸入資料庫的 IP，登入的用戶及密碼，點選完成後，第一次連接會出現安裝套件的視窗。"></a>b. 輸入<strong>資料庫的 IP</strong>，登入的<strong>用戶</strong>及<strong>密碼</strong>，點選<strong>完成</strong>後，第一次連接會出現安裝套件的視窗。</h5><p><img src="/./img/mssql/02.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="c-完成"><a href="#c-完成" class="headerlink" title="c. 完成"></a>c. 完成</h5><p><img src="/./img/mssql/00.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-建立資料"><a href="#3-建立資料" class="headerlink" title="3. 建立資料"></a>3. 建立資料</h3><p>點選<strong>文件</strong>展開下拉式選單，選擇<strong>導入</strong></p>
+<h5 id="a-1-導入腳本-SQL"><a href="#a-1-導入腳本-SQL" class="headerlink" title="a-1. 導入腳本(SQL)"></a>a-1. 導入腳本(SQL)</h5><p><img src="/./img/mssql/04.png" srcset="/img/loading.gif" lazyload><br><img src="/./img/mssql/05.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="a-2-選擇腳本所在的目錄，點選完成"><a href="#a-2-選擇腳本所在的目錄，點選完成" class="headerlink" title="a-2 選擇腳本所在的目錄，點選完成"></a>a-2 選擇腳本所在的目錄，點選<strong>完成</strong></h5><p><img src="/./img/mssql/06.png" srcset="/img/loading.gif" lazyload><br><img src="/./img/mssql/07.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="a-2-對要執行的腳本右鍵，選擇打開資源"><a href="#a-2-對要執行的腳本右鍵，選擇打開資源" class="headerlink" title="a-2 對要執行的腳本右鍵，選擇打開資源"></a>a-2 對要執行的腳本<strong>右鍵</strong>，選擇<strong>打開資源</strong></h5><p><img src="/./img/mssql/07-5.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="4-執行腳本-SQL"><a href="#4-執行腳本-SQL" class="headerlink" title="4. 執行腳本(SQL)"></a>4. 執行腳本(SQL)</h3><p>點擊<strong>執行 SQL 腳本</strong><br><img src="/./img/mssql/08.png" srcset="/img/loading.gif" lazyload><br>測試搜尋</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> country, <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">as</span> number <span class="hljs-keyword">from</span> Customers<br>    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> country<br></code></pre></td></tr></table></figure>
+
+<p><img src="/./img/mssql/09.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -288,7 +317,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/%E5%AF%A6%E9%A9%97/" class="print-no-link">#實驗</a>
+      
         <a href="/tags/docker/" class="print-no-link">#docker</a>
+      
+        <a href="/tags/mssql/" class="print-no-link">#mssql</a>
       
     </div>
   
@@ -300,8 +333,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>dockerfile 模板</div>
-      <div>http://example.com/2024/04/22/docker/dockerfile-模板/</div>
+      <div>實驗場-多容器DB</div>
+      <div>http://example.com/2024/05/06/實驗場-多容器DB/</div>
     </div>
     <div class="license-meta">
       
@@ -313,7 +346,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>發布於</div>
-          <div>2024年4月22日</div>
+          <div>2024年5月6日</div>
         </div>
       
       
@@ -345,18 +378,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/06/%E5%AF%A6%E9%A9%97%E5%A0%B4-%E5%A4%9A%E5%AE%B9%E5%99%A8DB/" title="實驗場-多容器DB">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">實驗場-多容器DB</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/21/deepinfra-%E9%80%9A%E9%81%8EAPI%E6%96%B9%E5%BC%8F%E8%AA%BF%E7%94%A8LLM/" title="deepinfra - 通過簡單的API方式調用LLM">
-                        <span class="hidden-mobile">deepinfra - 通過簡單的API方式調用LLM</span>
+                      <a href="/2024/04/22/docker/dockerfile-%E6%A8%A1%E6%9D%BF/" title="dockerfile 模板">
+                        <span class="hidden-mobile">dockerfile 模板</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
