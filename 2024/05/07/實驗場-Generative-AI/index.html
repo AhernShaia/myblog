@@ -16,35 +16,26 @@
   <meta name="author" content="Ahern">
   <meta name="keywords" content="">
   
-    <meta name="description" content="這個實驗主要用於無法在 macOS 上啟動mssql而衍生出的實驗環境。 使用工具 DBeaver docker   1. 啟動container1docker run -d --name sql1 -e &amp;#x27;ACCEPT_EULA&#x3D;Y&amp;#x27; -e &amp;#x27;SA_PASSWORD&#x3D;YOUR_PASSWORD&amp;#x27; -p 1433:1433 mcr.microsoft.com">
+    <meta name="description" content="在寫Prompt的時候，如果只想收到一個簡單的判斷，比如：使用者情緒、分析名詞…等，LLM通常都會給很多不必要的說明或解釋，在嘗試使用「懲罰」之後，發現真的精準很多，而且LLM只會有「指定」的回覆。 Prompt1234567891011prompt &#x3D; &quot;&quot;&quot;根據使用者的輸入判斷使用者的情緒，回應的規則如下：         1. 如果使用者輸入的內容偏向負面情緒，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="實驗場-多容器DB">
-<meta property="og:url" content="http://example.com/2024/05/06/%E5%AF%A6%E9%A9%97%E5%A0%B4-%E5%A4%9A%E5%AE%B9%E5%99%A8DB/index.html">
+<meta property="og:title" content="實驗場-GAI Prompt">
+<meta property="og:url" content="http://example.com/2024/05/07/%E5%AF%A6%E9%A9%97%E5%A0%B4-Generative-AI/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="這個實驗主要用於無法在 macOS 上啟動mssql而衍生出的實驗環境。 使用工具 DBeaver docker   1. 啟動container1docker run -d --name sql1 -e &amp;#x27;ACCEPT_EULA&#x3D;Y&amp;#x27; -e &amp;#x27;SA_PASSWORD&#x3D;YOUR_PASSWORD&amp;#x27; -p 1433:1433 mcr.microsoft.com">
+<meta property="og:description" content="在寫Prompt的時候，如果只想收到一個簡單的判斷，比如：使用者情緒、分析名詞…等，LLM通常都會給很多不必要的說明或解釋，在嘗試使用「懲罰」之後，發現真的精準很多，而且LLM只會有「指定」的回覆。 Prompt1234567891011prompt &#x3D; &quot;&quot;&quot;根據使用者的輸入判斷使用者的情緒，回應的規則如下：         1. 如果使用者輸入的內容偏向負面情緒，">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://example.com/img/mssql/01.png">
-<meta property="og:image" content="http://example.com/img/mssql/02.png">
-<meta property="og:image" content="http://example.com/img/mssql/00.png">
-<meta property="og:image" content="http://example.com/img/mssql/04.png">
-<meta property="og:image" content="http://example.com/img/mssql/05.png">
-<meta property="og:image" content="http://example.com/img/mssql/06.png">
-<meta property="og:image" content="http://example.com/img/mssql/07.png">
-<meta property="og:image" content="http://example.com/img/mssql/07-5.png">
-<meta property="og:image" content="http://example.com/img/mssql/08.png">
-<meta property="og:image" content="http://example.com/img/mssql/09.png">
-<meta property="article:published_time" content="2024-05-06T12:51:18.000Z">
-<meta property="article:modified_time" content="2024-05-07T05:10:56.909Z">
+<meta property="og:image" content="http://example.com/img/prompt.png">
+<meta property="article:published_time" content="2024-05-07T05:10:31.000Z">
+<meta property="article:modified_time" content="2024-05-07T05:32:43.587Z">
 <meta property="article:author" content="Ahern">
+<meta property="article:tag" content="GAI">
 <meta property="article:tag" content="實驗">
-<meta property="article:tag" content="docker">
-<meta property="article:tag" content="mssql">
+<meta property="article:tag" content="prompt">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/mssql/01.png">
+<meta name="twitter:image" content="http://example.com/img/prompt.png">
   
   
   
-  <title>實驗場-多容器DB - Hexo</title>
+  <title>實驗場-GAI Prompt - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="實驗場-多容器DB"></span>
+            <span id="subtitle" data-typed-text="實驗場-GAI Prompt"></span>
           
         </div>
 
@@ -221,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-06 20:51" pubdate>
-          2024年5月6日 晚上
+        <time datetime="2024-05-07 13:10" pubdate>
+          2024年5月7日 下午
         </time>
       </span>
     
@@ -233,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          178 字
+          401 字
         
       </span>
     
@@ -244,7 +235,7 @@
         
         
         
-          2 分鐘
+          4 分鐘
         
       </span>
     
@@ -281,30 +272,15 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">實驗場-多容器DB</h1>
+            <h1 id="seo-header">實驗場-GAI Prompt</h1>
             
             
               <div class="markdown-body">
                 
-                <p>這個實驗主要用於無法在 macOS 上啟動<code>mssql</code>而衍生出的實驗環境。</p>
-<h5 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h5><ul>
-<li>DBeaver</li>
-<li>docker</li>
-</ul>
-<hr>
-<h3 id="1-啟動container"><a href="#1-啟動container" class="headerlink" title="1. 啟動container"></a>1. 啟動<code>container</code></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -d --name sql1 -e <span class="hljs-string">&#x27;ACCEPT_EULA=Y&#x27;</span> -e <span class="hljs-string">&#x27;SA_PASSWORD=YOUR_PASSWORD&#x27;</span> -p 1433:1433 mcr.microsoft.com/mssql/server:2022-latest<br></code></pre></td></tr></table></figure>
+                <p>在寫<code>Prompt</code>的時候，如果只想收到一個簡單的判斷，比如：使用者情緒、分析名詞…等，<strong>LLM</strong>通常都會給很多不必要的說明或解釋，在嘗試使用「懲罰」之後，發現真的精準很多，而且<strong>LLM</strong>只會有「指定」的回覆。</p>
+<h3 id="Prompt"><a href="#Prompt" class="headerlink" title="Prompt"></a>Prompt</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">prompt = <span class="hljs-string">&quot;&quot;&quot;根據使用者的輸入判斷使用者的情緒，回應的規則如下：</span><br><span class="hljs-string">         1. 如果使用者輸入的內容偏向負面情緒，只回傳&quot;depressed&quot;,不要有其他內容，否則將受到懲罰。</span><br><span class="hljs-string">         2. 如果使用者輸入的內容偏向正面情緒，只回傳&quot;friendly&quot;,不要有其他內容，否則將受到懲罰。</span><br><span class="hljs-string">         3. 若使用者輸入的內容偏向中性情緒，只回傳&quot;default&quot;,不要有其他內容，否則將受到懲罰。</span><br><span class="hljs-string">         4. 如果使用者輸入的內容包含辱罵或不禮貌詞句，只回傳&quot;angry&quot;,不要有其他內容，否則將受到懲罰。</span><br><span class="hljs-string">         5. 如果使用者輸入的內容比較興奮，只回傳」upbeat&quot;,不要有其他內容，否則將受到懲罰。</span><br><span class="hljs-string">         6. 如果使用者輸入的內容比較悲傷，只回傳「depressed&quot;,不要有其他內容，否則將受到懲罰。</span><br><span class="hljs-string">         7.如果使用者輸入的內容比較開心，只回傳&quot;cheerful&quot;,不要有其他內容，否則會受到懲罰。</span><br><span class="hljs-string">         8. 只返回英文，不允許有換行符等其他內容，否則會受到懲罰。</span><br><span class="hljs-string">         使用者輸入的內容是：&#123;query&#125;</span><br><span class="hljs-string">         &quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="2-DBeaver-連接-mssql"><a href="#2-DBeaver-連接-mssql" class="headerlink" title="2. DBeaver 連接 mssql"></a>2. DBeaver 連接 mssql</h3><h5 id="a-選擇SQL-Server點選完成"><a href="#a-選擇SQL-Server點選完成" class="headerlink" title="a. 選擇SQL Server點選完成"></a>a. 選擇<code>SQL Server</code>點選<strong>完成</strong></h5><p><img src="/./img/mssql/01.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="b-輸入資料庫的-IP，登入的用戶及密碼，點選完成後，第一次連接會出現安裝套件的視窗。"><a href="#b-輸入資料庫的-IP，登入的用戶及密碼，點選完成後，第一次連接會出現安裝套件的視窗。" class="headerlink" title="b. 輸入資料庫的 IP，登入的用戶及密碼，點選完成後，第一次連接會出現安裝套件的視窗。"></a>b. 輸入<strong>資料庫的 IP</strong>，登入的<strong>用戶</strong>及<strong>密碼</strong>，點選<strong>完成</strong>後，第一次連接會出現安裝套件的視窗。</h5><p><img src="/./img/mssql/02.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="c-完成"><a href="#c-完成" class="headerlink" title="c. 完成"></a>c. 完成</h5><p><img src="/./img/mssql/00.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="3-建立資料"><a href="#3-建立資料" class="headerlink" title="3. 建立資料"></a>3. 建立資料</h3><p>點選<strong>文件</strong>展開下拉式選單，選擇<strong>導入</strong></p>
-<h5 id="a-1-導入腳本-SQL"><a href="#a-1-導入腳本-SQL" class="headerlink" title="a-1. 導入腳本(SQL)"></a>a-1. 導入腳本(SQL)</h5><p><img src="/./img/mssql/04.png" srcset="/img/loading.gif" lazyload><br><img src="/./img/mssql/05.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="a-2-選擇腳本所在的目錄，點選完成"><a href="#a-2-選擇腳本所在的目錄，點選完成" class="headerlink" title="a-2 選擇腳本所在的目錄，點選完成"></a>a-2 選擇腳本所在的目錄，點選<strong>完成</strong></h5><p><img src="/./img/mssql/06.png" srcset="/img/loading.gif" lazyload><br><img src="/./img/mssql/07.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="a-2-對要執行的腳本右鍵，選擇打開資源"><a href="#a-2-對要執行的腳本右鍵，選擇打開資源" class="headerlink" title="a-2 對要執行的腳本右鍵，選擇打開資源"></a>a-2 對要執行的腳本<strong>右鍵</strong>，選擇<strong>打開資源</strong></h5><p><img src="/./img/mssql/07-5.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="4-執行腳本-SQL"><a href="#4-執行腳本-SQL" class="headerlink" title="4. 執行腳本(SQL)"></a>4. 執行腳本(SQL)</h3><p>點擊<strong>執行 SQL 腳本</strong><br><img src="/./img/mssql/08.png" srcset="/img/loading.gif" lazyload><br>測試搜尋</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> country, <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">as</span> number <span class="hljs-keyword">from</span> Customers<br>    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> country<br></code></pre></td></tr></table></figure>
-
-<p><img src="/./img/mssql/09.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="輸出結果"><a href="#輸出結果" class="headerlink" title="輸出結果"></a>輸出結果</h3><p><img src="/./img/prompt.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -338,11 +314,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/GAI/" class="print-no-link">#GAI</a>
+      
         <a href="/tags/%E5%AF%A6%E9%A9%97/" class="print-no-link">#實驗</a>
       
-        <a href="/tags/docker/" class="print-no-link">#docker</a>
-      
-        <a href="/tags/mssql/" class="print-no-link">#mssql</a>
+        <a href="/tags/prompt/" class="print-no-link">#prompt</a>
       
     </div>
   
@@ -354,8 +330,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>實驗場-多容器DB</div>
-      <div>http://example.com/2024/05/06/實驗場-多容器DB/</div>
+      <div>實驗場-GAI Prompt</div>
+      <div>http://example.com/2024/05/07/實驗場-Generative-AI/</div>
     </div>
     <div class="license-meta">
       
@@ -367,7 +343,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>發布於</div>
-          <div>2024年5月6日</div>
+          <div>2024年5月7日</div>
         </div>
       
       
@@ -399,18 +375,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/07/%E5%AF%A6%E9%A9%97%E5%A0%B4-Generative-AI/" title="實驗場-GAI Prompt">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">實驗場-GAI Prompt</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/22/docker/dockerfile-%E6%A8%A1%E6%9D%BF/" title="dockerfile 模板">
-                        <span class="hidden-mobile">dockerfile 模板</span>
+                      <a href="/2024/05/06/%E5%AF%A6%E9%A9%97%E5%A0%B4-%E5%A4%9A%E5%AE%B9%E5%99%A8DB/" title="實驗場-多容器DB">
+                        <span class="hidden-mobile">實驗場-多容器DB</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
