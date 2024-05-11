@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/browser_icon.png">
+  <link rel="icon" href="/img/browser_icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ahern">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Docker 容器管理">
+<meta property="og:url" content="http://example.com/2023/03/24/docker/3-%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://example.com/img/docker/3-%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/Untitled.png">
+<meta property="og:image" content="http://example.com/img/docker/3-%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/Untitled%201.png">
+<meta property="article:published_time" content="2023-03-23T19:14:14.000Z">
+<meta property="article:modified_time" content="2024-05-11T00:54:51.699Z">
+<meta property="article:author" content="Ahern">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/docker/3-%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/Untitled.png">
+  
+  
+  
+  <title>Docker 容器管理 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ahern</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/Background_mage.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Docker 容器管理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-24 03:14" pubdate>
+          2023年3月24日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Docker 容器管理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <hr>
+<span id="more"></span>
+
+<h1 id="創建容器常用選項"><a href="#創建容器常用選項" class="headerlink" title="創建容器常用選項"></a>創建容器常用選項</h1><table>
+<thead>
+<tr>
+<th>選項</th>
+<th align="left">說明</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>i, –interactive</td>
+<td align="left">交互式</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>-t, –tty</td>
+<td align="left">分配一個偽裝端</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>-d, –detach</td>
+<td align="left">在後台運行</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>-e, –env</td>
+<td align="left">設定環境變量</td>
+<td align="left">可設置多個環境變量(-e)</td>
+</tr>
+<tr>
+<td>-p, –publish list</td>
+<td align="left">發佈容器端口到主機(暴露端口)</td>
+<td align="left">“自定義端口”:”服務端口”(ex: -p 9999:80)</td>
+</tr>
+<tr>
+<td>-P, -publish-all</td>
+<td align="left">發佈容器所有 EXPOSE 的端口到宿主機隨機端口</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>–-name string</td>
+<td align="left">指定容器名稱</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>-h, –hostname</td>
+<td align="left">設置容器主機名</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>–ip,string</td>
+<td align="left">指定容器 IP,可用於自定義網路</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>–network</td>
+<td align="left">連接容器到一個網路</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>–mount mount</td>
+<td align="left">將文件系統附加到容器</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>-v, –volume list</td>
+<td align="left">綁定掛載一個卷</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>–restart stringload</td>
+<td align="left">容器退出時重啟策略,預設為 no,可選值</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="資源限制"><a href="#資源限制" class="headerlink" title="資源限制"></a>資源限制</h1><ul>
+<li>創建的容器預設使用宿主機所有資源</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>選項</th>
+<th>描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-m, -memory</td>
+<td>限制容器記憶體</td>
+<td></td>
+</tr>
+<tr>
+<td>-memory-swap</td>
+<td>允許交換到磁盤空間的記憶體</td>
+<td></td>
+</tr>
+<tr>
+<td>-memory-swappiness&#x3D;&lt;0-100&gt;</td>
+<td>容器使用 swap 分區交換的百分比</td>
+<td></td>
+</tr>
+<tr>
+<td>-oom-kill-disable</td>
+<td>禁用 OOM Killer</td>
+<td>當機器的物理記憶體不足時,Linux 會找出占用資源最大的服務並殺死</td>
+</tr>
+<tr>
+<td>pull</td>
+<td>從鏡像倉庫拉取鏡像</td>
+<td></td>
+</tr>
+<tr>
+<td>push</td>
+<td>推送一個鏡像到鏡像倉庫</td>
+<td></td>
+</tr>
+<tr>
+<td>rm</td>
+<td>刪除鏡像</td>
+<td></td>
+</tr>
+<tr>
+<td>prune</td>
+<td>移除沒有被標記或著沒有被容器引用的鏡像</td>
+<td></td>
+</tr>
+<tr>
+<td>tag</td>
+<td>創建一個引用源鏡像,標記鏡像</td>
+<td></td>
+</tr>
+<tr>
+<td>export</td>
+<td>導出容器文件系統到 tar 歸檔文件</td>
+<td></td>
+</tr>
+<tr>
+<td>import</td>
+<td>導入容器文件系統 tar 歸檔文件創建鏡像</td>
+<td></td>
+</tr>
+<tr>
+<td>save</td>
+<td>保存一個或多個鏡像到一個 tar 歸檔文件</td>
+<td></td>
+</tr>
+<tr>
+<td>load</td>
+<td>加載鏡像來自 tar 歸檔或標準輸入</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="隔離性-Namespace"><a href="#隔離性-Namespace" class="headerlink" title="隔離性(Namespace)"></a>隔離性(Namespace)</h1><p>在物理機器中可以運行多個不同的操作系統,這就需要解決隔離性的問題,將環境單獨分開,相互不影響。</p>
+<p>Linux kernel 在 2.4.19 版本開始,引用了 namespace 概念,目的是將特定的全局資源通過抽象方法使 namespace 中的進程看起來擁有自己隔離的資源。docker 就是透過這個機制實現容器資源隔離。</p>
+<h2 id="Linux-的-Namespace-機制提供了-6-種不同命名空間："><a href="#Linux-的-Namespace-機制提供了-6-種不同命名空間：" class="headerlink" title="Linux 的 Namespace 機制提供了 6 種不同命名空間："></a>Linux 的 Namespace 機制提供了 6 種不同命名空間：</h2><ul>
+<li><strong>IPC</strong>：隔離進程間通信</li>
+<li><strong>MOUNT</strong>：隔離文件系統掛載點</li>
+<li><strong>NET</strong>：隔離網絡協議棧</li>
+<li><strong>PID</strong>：隔離進程號，進程命名空間是一個父子結構，子空間對父空間可見</li>
+<li><strong>USER</strong>：隔離用戶</li>
+<li><strong>UTS</strong>：隔離主機名和域名</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ll /proc/$$/ns<br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/docker/3-%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<hr>
+<h1 id="CGroup"><a href="#CGroup" class="headerlink" title="CGroup"></a>CGroup</h1><p>Docker 利用 namespace 實現了容器間的資源隔離,但是無法對容器進行資源限制,如 CPU、memory。</p>
+<p>當一個容器屬於 CPU 密集性的服務,這時就會占用大量的 CPU,進而導致其他容器相互影響,搶占資源。</p>
+<p>所有的任務就是運行在系統中的一個進程，而 <strong>CGroups</strong> 以某種標準將一組進程為目標進行資源分配和控制。例如 CPU、memory、網路等，並且可以<strong>動態配置</strong>。</p>
+<h3 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h3><ol>
+<li>限制進程組使用的資源數量（ Resource limitation ）：可以為進程組設定資源使用上限，例如 memory。</li>
+<li>進程組優先級控制（ Prioritization ）：可以為進程組分配特定 CPU、磁盤 IO 吞吐量</li>
+<li>記錄進程組使用的資源數量（ Accounting ）：例如使用記錄某個進程組使用的 CPU 時間</li>
+<li>進程組控制（ Control ）：可以將進程組掛起和恢復</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#查看cgroups可控制的資源：</span><br><span class="hljs-built_in">ls</span> /sys/fs/cgroup/ -l<br>docker update --<span class="hljs-built_in">help</span> <span class="hljs-comment">#可查看相關指令</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/docker/3-%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<blockquote>
+<p>blkio ：對塊設備的 IO 進行限制。<br>cpu：限制 CPU 時間片的分配，與 cpuacct 掛載同一層目錄。<br>cpuacct ：生成 cgroup 中的任務佔用 CPU 資源的報告，與 cpu 掛載同一目錄。<br>cpuset ：給 cgroup 中的任務分配獨立的 CPU（多核處理器）和 memory 節點。<br>devices ：允許或著拒絕 cgroup 中的任務訪問設備。<br>freezer ：暫停&#x2F;恢復 cgroup 中的任務。<br>hugetlb ：限制使用的 memory 頁數量。<br>memory ：對 cgroup 中任務的可用 memory 進行限制，並自動生成資源佔用報告。<br>net_cls ：使用等級識別符（classid）標記網絡數據包，這讓 Linux 流量控製程序（tc）可以識別來自 特定從 cgroup 任務的數據包，並進行網絡限制。<br>net_prio：允許基於 cgroup 設置網絡流量的優先級。<br>perf_event：允許使用 perf 工具來監控 cgroup。<br>pids：限制任務的數量。</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/" class="category-chain-item">學習筆記</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Docker/" class="print-no-link">#Docker</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Docker 容器管理</div>
+      <div>http://example.com/2023/03/24/docker/3-容器管理/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Ahern</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2023年3月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/03/24/docker/2-Docker%20%E9%8F%A1%E5%83%8F%E7%AE%A1%E7%90%86/" title="Docker 鏡像管理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Docker 鏡像管理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/03/24/docker/4-%E5%AE%B9%E5%99%A8%E6%95%B8%E6%93%9A%E6%8C%81%E4%B9%85%E5%8C%96/" title="Docker 容器數據持久化">
+                        <span class="hidden-mobile">Docker 容器數據持久化</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>
