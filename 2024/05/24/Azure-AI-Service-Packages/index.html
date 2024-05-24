@@ -16,24 +16,21 @@
   <meta name="author" content="Ahern">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="Docker 鏡像管理">
-<meta property="og:url" content="http://example.com/2023/03/24/docker/2-Docker%20%E9%8F%A1%E5%83%8F%E7%AE%A1%E7%90%86/index.html">
+    <meta name="description" content="語音轉文字前置作業：  部署 OpenAI whisper model  12345678910111213141516171819202122232425262728import osfrom openai import AzureOpenAIfrom dotenv import load_dotenvload_dotenv()api_key &#x3D; os.getenv(&amp;#x27;WHISPER_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Azure AI Service Packages">
+<meta property="og:url" content="http://example.com/2024/05/24/Azure-AI-Service-Packages/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="語音轉文字前置作業：  部署 OpenAI whisper model  12345678910111213141516171819202122232425262728import osfrom openai import AzureOpenAIfrom dotenv import load_dotenvload_dotenv()api_key &#x3D; os.getenv(&amp;#x27;WHISPER_">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://example.com/img/docker/2-%E9%8F%A1%E5%83%8F%E7%AE%A1%E7%90%86/Untitled.png">
-<meta property="og:image" content="http://example.com/img/docker/2-%E9%8F%A1%E5%83%8F%E7%AE%A1%E7%90%86/Untitled%201.png">
-<meta property="og:image" content="http://example.com/img/docker/2-%E9%8F%A1%E5%83%8F%E7%AE%A1%E7%90%86/Untitled%202.png">
-<meta property="article:published_time" content="2023-03-23T19:14:14.000Z">
-<meta property="article:modified_time" content="2024-05-11T00:54:47.454Z">
+<meta property="article:published_time" content="2024-05-24T02:30:06.000Z">
+<meta property="article:modified_time" content="2024-05-24T02:56:32.812Z">
 <meta property="article:author" content="Ahern">
-<meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/docker/2-%E9%8F%A1%E5%83%8F%E7%AE%A1%E7%90%86/Untitled.png">
   
   
   
-  <title>Docker 鏡像管理 - Hexo</title>
+  <title>Azure AI Service Packages - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Docker 鏡像管理"></span>
+            <span id="subtitle" data-typed-text="Azure AI Service Packages"></span>
           
         </div>
 
@@ -210,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-24 03:14" pubdate>
-          2023年3月24日 凌晨
+        <time datetime="2024-05-24 10:30" pubdate>
+          2024年5月24日 上午
         </time>
       </span>
     
@@ -222,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          440 字
+          349 字
         
       </span>
     
@@ -233,7 +230,7 @@
         
         
         
-          4 分鐘
+          3 分鐘
         
       </span>
     
@@ -270,101 +267,25 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Docker 鏡像管理</h1>
+            <h1 id="seo-header">Azure AI Service Packages</h1>
             
             
               <div class="markdown-body">
                 
-                <hr>
-<span id="more"></span>
+                <h3 id="語音轉文字"><a href="#語音轉文字" class="headerlink" title="語音轉文字"></a>語音轉文字</h3><p>前置作業：</p>
+<ol>
+<li>部署 <code>OpenAI whisper model</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">from</span> openai <span class="hljs-keyword">import</span> AzureOpenAI<br><span class="hljs-keyword">from</span> dotenv <span class="hljs-keyword">import</span> load_dotenv<br>load_dotenv()<br><br>api_key = os.getenv(<span class="hljs-string">&#x27;WHISPER_API_KEY&#x27;</span>)<br>api_version = os.getenv(<span class="hljs-string">&#x27;WHISPER_API_VERSION&#x27;</span>)<br>azure_endpoint = os.getenv(<span class="hljs-string">&#x27;WHISPER_ENDPOINT&#x27;</span>)<br><br><span class="hljs-comment"># 只需要傳入檔案路徑即可</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">speech_to_text</span>(<span class="hljs-params">file_path</span>):<br>    client = AzureOpenAI(<br>        api_key=api_key,<br>        api_version=api_version,<br>        azure_endpoint=azure_endpoint<br>    )<br><br>    <span class="hljs-comment"># This will correspond to the custom name you chose for your deployment when you deployed a model.&quot;</span><br>    deployment_id = <span class="hljs-string">&quot;whisper&quot;</span><br><br>    result = client.audio.transcriptions.create(<br>        file=<span class="hljs-built_in">open</span>(file_path, <span class="hljs-string">&quot;rb&quot;</span>),<br>        model=deployment_id<br>    )<br><br>    <span class="hljs-keyword">return</span> result.text<br></code></pre></td></tr></table></figure>
 
-<h1 id="Docker-鏡像管理"><a href="#Docker-鏡像管理" class="headerlink" title="Docker 鏡像管理"></a>Docker 鏡像管理</h1><h1 id="鏡像"><a href="#鏡像" class="headerlink" title="鏡像"></a>鏡像</h1><ul>
-<li>分層存儲的文件</li>
-<li>軟體應用的環境</li>
-<li>單一鏡像可創建多個容器(相當於模板)</li>
-<li>不需依賴 Linux 內核而又精簡的 Linux 操作系統</li>
-</ul>
-<hr>
-<h1 id="鏡像與容器"><a href="#鏡像與容器" class="headerlink" title="鏡像與容器"></a>鏡像與容器</h1><ul>
-<li>鏡像 類似於虛擬機鏡像,一個只<strong>讀</strong>模板</li>
-<li>容器 通過鏡像創建的實例</li>
-</ul>
-<p><img src="/img/docker/2-%E9%8F%A1%E5%83%8F%E7%AE%A1%E7%90%86/Untitled.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#查看docker</span><br>docker info<br><br>Server Version: 20.10.9  <span class="hljs-comment">#目前版本</span><br>Storage Driver: overlay2 <span class="hljs-comment">#存儲驅動 (image的存放位置: var/lib/docker/驅動目錄)</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#拉取鏡像</span><br>docker pull <span class="hljs-string">&quot;image:tag&quot;</span><br><span class="hljs-comment">#查看鏡像</span><br>docker images<br><span class="hljs-comment">#創建容器,運行</span><br>docker run -d --name <span class="hljs-string">&quot;自定義名稱&quot;</span> <span class="hljs-string">&quot;鏡像名&quot;</span><br><span class="hljs-comment">#查看容器</span><br>docker ps<br></code></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><table>
-<thead>
-<tr>
-<th>docker</th>
-<th>image &lt;命令&gt;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>命令</td>
-<td>描述</td>
-</tr>
-<tr>
-<td>ls</td>
-<td>列出鏡像</td>
-</tr>
-<tr>
-<td>build</td>
-<td>建構鏡像(Dockerfile)</td>
-</tr>
-<tr>
-<td>history</td>
-<td>查看鏡像歷史</td>
-</tr>
-<tr>
-<td>inspect</td>
-<td>顯示鏡像詳細訊息</td>
-</tr>
-<tr>
-<td>pull</td>
-<td>從鏡像倉庫拉取鏡像</td>
-</tr>
-<tr>
-<td>push</td>
-<td>推送一個鏡像到鏡像倉庫</td>
-</tr>
-<tr>
-<td>rm</td>
-<td>刪除鏡像</td>
-</tr>
-<tr>
-<td>prune</td>
-<td>移除沒有被標記或著沒有被容器引用的鏡像</td>
-</tr>
-<tr>
-<td>tag</td>
-<td>創建一個引用源鏡像,標記鏡像</td>
-</tr>
-<tr>
-<td>export</td>
-<td>導出容器文件系統到 tar 歸檔文件</td>
-</tr>
-<tr>
-<td>import</td>
-<td>導入容器文件系統 tar 歸檔文件創建鏡像</td>
-</tr>
-<tr>
-<td>save</td>
-<td>保存一個或多個鏡像到一個 tar 歸檔文件</td>
-</tr>
-<tr>
-<td>load</td>
-<td>加載鏡像來自 tar 歸檔或標準輸入</td>
-</tr>
-</tbody></table>
-<h1 id="鏡像存儲-聯合文件系統-UnionFS"><a href="#鏡像存儲-聯合文件系統-UnionFS" class="headerlink" title="鏡像存儲:聯合文件系統(UnionFS)"></a>鏡像存儲:聯合文件系統(UnionFS)</h1><p>相較於虛擬機一個環境裡獨立的鏡像文件,docker 則引用聯合文件系統,將多層文件聯合掛載到一個容器文件系統。</p>
-<hr>
-<p><img src="/img/docker/2-%E9%8F%A1%E5%83%8F%E7%AE%A1%E7%90%86/Untitled%201.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
-<hr>
-<h1 id="鏡像存儲-寫時複製"><a href="#鏡像存儲-寫時複製" class="headerlink" title="鏡像存儲:寫時複製"></a>鏡像存儲:寫時複製</h1><p>鏡像只供讀取,以共享的形式供多個容器使用,如果需要在容器修改文件(即鏡像裡的文件),docker 引用了寫時複製(copy on write),將鏡像裡的文件複製到容器的文件系統進行修改。</p>
-<p><img src="/img/docker/2-%E9%8F%A1%E5%83%8F%E7%AE%A1%E7%90%86/Untitled%202.png" srcset="/img/loading.gif" lazyload alt="Untitled"></p>
+<h3 id="文字轉語音"><a href="#文字轉語音" class="headerlink" title="文字轉語音"></a>文字轉語音</h3><p>前置作業：</p>
+<ol>
+<li>部署<strong>Azure Speech Service</strong> <code>https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/SpeechServices</code></li>
+<li>準備 Azure Speech Service 的訂閱金鑰<br>開始使用:</li>
+<li>傳入文字<br>結果:</li>
+<li>會在本地生成一個 mp3 文件</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> uuid<br><span class="hljs-comment"># Azure Speech Service 金鑰</span><br>SPEECH_KEY = <span class="hljs-string">&#x27;speech_key&#x27;</span><br><span class="hljs-comment"># 語音風格</span><br>STYLE = <span class="hljs-string">&#x27;affectionate&#x27;</span><br><span class="hljs-comment"># 語音資源庫</span><br>Voice_Name = <span class="hljs-string">&#x27;zh-CN-YunfengNeural&#x27;</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_voice</span>(<span class="hljs-params">text: <span class="hljs-built_in">str</span></span>):<br>    text_to_speech_uid = <span class="hljs-built_in">str</span>(uuid.uuid4())<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;text to speech:&#x27;</span>, text)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;file uid:&#x27;</span>, text_to_speech_uid)<br>    <span class="hljs-comment"># 使用微軟TTS服務</span><br>    headers = &#123;<br>        <span class="hljs-string">&quot;Ocp-Apim-Subscription-Key&quot;</span>: SPEECH_KEY,<br>        <span class="hljs-string">&quot;Content-Type&quot;</span>: <span class="hljs-string">&quot;application/ssml+xml&quot;</span>,<br>        <span class="hljs-string">&quot;X-Microsoft-OutputFormat&quot;</span>: <span class="hljs-string">&quot;audio-16khz-32kbitrate-mono-mp3&quot;</span>,<br>        <span class="hljs-string">&quot;User-Agent&quot;</span>: <span class="hljs-string">&quot;Ahern&#x27;s TTS&quot;</span><br>    &#125;<br>    body = <span class="hljs-string">f&quot;&quot;&quot;&lt;speak version=&#x27;1.0&#x27; xmlns=&#x27;http://www.w3.org/2001/10/synthesis&#x27; xmlns:mstts=&#x27;http://www.w3.org/2001/10/synthesis&#x27; xml:lang=&#x27;zh-TW&#x27;&gt;</span><br><span class="hljs-string">        &lt;voice name=<span class="hljs-subst">&#123;Voice_Name&#125;</span>&gt;</span><br><span class="hljs-string">            &lt;mstts:express-as style=<span class="hljs-subst">&#123;STYLE&#125;</span> role=&quot;SeniorMale&quot;&gt;<span class="hljs-subst">&#123;text&#125;</span>&lt;/mstts:express-as&gt;</span><br><span class="hljs-string"></span><br><span class="hljs-string">        &lt;/voice&gt;</span><br><span class="hljs-string">    &lt;/speak&gt;&quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 發送請求</span><br>    response = requests.post(<br>        <span class="hljs-string">&#x27;https://eastus.tts.speech.microsoft.com/cognitiveservices/v1&#x27;</span>, headers=headers, data=body.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;response status:&quot;</span>,   response)<br>    <span class="hljs-keyword">if</span> response.status_code == <span class="hljs-number">200</span>:<br>        <span class="hljs-comment"># 2. 將語音保存到文件</span><br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">f&#x27;./<span class="hljs-subst">&#123;text_to_speech_uid&#125;</span>.mp3&#x27;</span>, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>            f.write(response.content)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;語音合成成功&quot;</span>)<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -373,34 +294,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/" class="category-chain-item">學習筆記</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Docker/" class="print-no-link">#Docker</a>
-      
-    </div>
   
 </div>
 
@@ -410,8 +303,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Docker 鏡像管理</div>
-      <div>http://example.com/2023/03/24/docker/2-Docker 鏡像管理/</div>
+      <div>Azure AI Service Packages</div>
+      <div>http://example.com/2024/05/24/Azure-AI-Service-Packages/</div>
     </div>
     <div class="license-meta">
       
@@ -423,7 +316,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>發布於</div>
-          <div>2023年3月24日</div>
+          <div>2024年5月24日</div>
         </div>
       
       
@@ -455,18 +348,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/24/docker/1-Docker%20%E6%A6%82%E8%BF%B0%20/" title="Docker 概述">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Docker 概述</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/24/docker/3-%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/" title="Docker 容器管理">
-                        <span class="hidden-mobile">Docker 容器管理</span>
+                      <a href="/2024/05/11/K8s-%E7%9A%84%E6%9C%AC%E5%9C%B0%E6%B0%B8%E7%BA%8C-%E6%8C%81%E4%B9%85%E5%8C%96-%E5%84%B2%E5%AD%98/" title="K8s 的本地永續(持久化)儲存">
+                        <span class="hidden-mobile">K8s 的本地永續(持久化)儲存</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
